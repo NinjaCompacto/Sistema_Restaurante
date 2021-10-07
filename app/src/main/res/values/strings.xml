@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Sistema Restaurante</string>
+    <string-array name="funcao">
+        <item>Garçom</item>
+        <item>Estoque</item>
+        <item>Cozinha</item>
+        <item>Bar</item>
+        <item>Central de Reposição</item>
+        <item>Caixa</item>
+    </string-array>
 </resources>

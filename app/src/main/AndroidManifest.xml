@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sistemarestaurante">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,11 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".Cadastro_e_login.FotoCadastroActivity"
+            android:exported="true"
+            android:parentActivityName=".Cadastro_e_login.LoginActivity"/>
         <activity
             android:name=".Cadastro_e_login.CadastroActivity"
             android:exported="true"
-            android:parentActivityName=".Cadastro_e_login.LoginActivity"/>
+            android:parentActivityName=".Cadastro_e_login.LoginActivity" />
         <activity
             android:name=".Cadastro_e_login.LoginActivity"
             android:exported="true">
@@ -25,7 +34,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
