@@ -4,6 +4,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class UsuarioFireBase {
-    private FirebaseUser user = ConfiguracaoFirebase.getAuth().getCurrentUser();
 
+    public static FirebaseUser getUsuarioLogado () {
+        FirebaseAuth auth = ConfiguracaoFirebase.getAuth();
+        FirebaseUser user = auth.getCurrentUser();
+        return user;
+    }
 }

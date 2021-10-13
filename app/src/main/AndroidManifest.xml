@@ -15,10 +15,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".Activitys.CadastroFotoPrato"
+            android:exported="true"
+            android:parentActivityName=".Activitys.CadastroPratoActicity"/>
+        <activity
+            android:name=".Activitys.CadastroPratoActicity"
+            android:exported="true"
+            android:parentActivityName=".Funcoes.CozinhaActivity" />
+        <activity
+            android:name=".Funcoes.CentralReposicaoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Funcoes.CaixaActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Funcoes.BarActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Funcoes.EstoqueActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Funcoes.GarcomActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Funcoes.CozinhaActivity"
+            android:exported="true" />
         <activity
             android:name=".Cadastro_e_login.FotoCadastroActivity"
             android:exported="true"
-            android:parentActivityName=".Cadastro_e_login.LoginActivity"/>
+            android:parentActivityName=".Cadastro_e_login.LoginActivity" />
         <activity
             android:name=".Cadastro_e_login.CadastroActivity"
             android:exported="true"
