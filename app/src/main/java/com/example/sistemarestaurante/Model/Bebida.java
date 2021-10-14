@@ -29,7 +29,7 @@ public class Bebida implements Serializable {
         return NomeBebida;
     }
 
-    public void setNomePrato(String nomeBebida) {
+    public void setNomeBebida(String nomeBebida) {
         NomeBebida = nomeBebida;
     }
 

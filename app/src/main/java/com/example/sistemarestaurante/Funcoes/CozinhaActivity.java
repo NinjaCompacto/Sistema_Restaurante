@@ -24,7 +24,7 @@ public class CozinhaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cozinha);
 
         //configurações iniciais
-        fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fabBar);
 
 
         fab.setOnClickListener(new View.OnClickListener() {

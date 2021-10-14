@@ -15,23 +15,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".Activitys.CadastroFotoBebida"
+            android:label="Adicionar Foto"
+            android:exported="true" />
+        <activity
+            android:name=".Activitys.CadastroBebidaActivity"
+            android:exported="true"
+            android:label="Cadastro de Bebidas"
+            android:parentActivityName=".Funcoes.BarActivity" />
+        <activity
+            android:name=".Funcoes.BarActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activitys.CadastroFotoPrato"
             android:exported="true"
-            android:parentActivityName=".Activitys.CadastroPratoActicity"/>
+            android:label="Adicionar Foto"
+            android:parentActivityName=".Activitys.CadastroPratoActicity" />
         <activity
             android:name=".Activitys.CadastroPratoActicity"
             android:exported="true"
+            android:label="Cadastro de Pratos"
             android:parentActivityName=".Funcoes.CozinhaActivity" />
         <activity
             android:name=".Funcoes.CentralReposicaoActivity"
             android:exported="true" />
         <activity
             android:name=".Funcoes.CaixaActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Funcoes.BarActivity"
             android:exported="true" />
         <activity
             android:name=".Funcoes.EstoqueActivity"
@@ -61,7 +72,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

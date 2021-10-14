@@ -1,6 +1,5 @@
 package com.example.sistemarestaurante.Activitys;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
-import com.example.sistemarestaurante.Model.Prato;
+import com.example.sistemarestaurante.Model.Bebida;
 import com.example.sistemarestaurante.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,96 +27,94 @@ import java.io.ByteArrayOutputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CadastroFotoPrato extends AppCompatActivity {
+public class CadastroFotoBebida extends AppCompatActivity {
+
+    //Firebase
+    private DatabaseReference databaseReference = ConfiguracaoFirebase.getDatabaseReference();
+    private StorageReference storageReference = ConfiguracaoFirebase.getStorageReference();
 
     //XMl
-    private CircleImageView circleImagePrato;
-    //model
-    private Prato prato;
-    //Firebase
-    private  DatabaseReference databaseReference = ConfiguracaoFirebase.getDatabaseReference();
-    private StorageReference storageReference = ConfiguracaoFirebase.getStorageReference();
+    private CircleImageView circleImageBebida;
+    //Model
+    private Bebida bebida;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_foto_prato);
+        setContentView(R.layout.activity_cadastro_foto_bebida);
 
-        //configurações inicias
-        circleImagePrato = findViewById(R.id.circleImageBebida);
+        //configurações iniciais
+        circleImageBebida = findViewById(R.id.circleImageBebida);
 
-
-        //recuperando extras
+        //recuperando dados da bebida
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null){
-            prato = (Prato) bundle.getSerializable("prato");
+        if(bundle != null){
+            bebida = (Bebida) bundle.getSerializable("bebida");
         }
 
-        //abrindo camera para setar imagem
-        circleImagePrato.setOnClickListener(new View.OnClickListener() {
+        //seta evento de click para o circleimageviw
+        circleImageBebida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (i.resolveActivity(getPackageManager())!= null) {
-                    startActivityForResult(i, 200);
+                if (i.resolveActivity(getPackageManager())!=null){
+                    startActivityForResult(i,300);
                 }
             }
         });
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK){
-            Bitmap imagem = null;
+        if(resultCode == RESULT_OK){
 
+            Bitmap bitmap = null;
             switch (requestCode){
-                case 200:
-                    imagem = (Bitmap) data.getExtras().get("data");
+                case 300:
+                    bitmap = (Bitmap) data.getExtras().get("data");
                     break;
             }
-            if(imagem != null){
-                //seta imagem no circleimageView
-                circleImagePrato.setImageBitmap(imagem);
+            if (bitmap != null){
+                circleImageBebida.setImageBitmap(bitmap);
 
                 //recupera dados da imagem para o firebase
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                imagem.compress(Bitmap.CompressFormat.JPEG,70,baos);
-                byte[] dadosImagem = baos.toByteArray();
+                bitmap.compress(Bitmap.CompressFormat.JPEG,70,baos);
+                byte[] dadosimagem = baos.toByteArray();
 
                 //salva imagem no storage
-                final StorageReference imagemPratoref = storageReference
+                final StorageReference imagemBebidaref = storageReference
                         .child("Imagens")
-                        .child("pratos")
-                        .child(prato.getNomePrato());
-                //upando imagem para storage
-                UploadTask uploadTask = imagemPratoref.putBytes(dadosImagem);
+                        .child("bebidas")
+                        .child(bebida.getNomeBebida());
+                UploadTask uploadTask = imagemBebidaref.putBytes(dadosimagem);
                 uploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(CadastroFotoPrato.this,"Erro ao fazer Upload da Imagem",Toast.LENGTH_LONG).show();
+                        Toast.makeText(CadastroFotoBebida.this,"Erro ao fazer Upload da Imagem",Toast.LENGTH_LONG).show();
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        imagemPratoref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        imagemBebidaref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
                                 Uri url = task.getResult();
-                                prato.setFoto(url.toString());
-                                prato.salvarPrato();
-                                Toast.makeText(CadastroFotoPrato.this,"Sucesso ao fazer Upload da Imagem",Toast.LENGTH_LONG).show();
+                                bebida.setFoto(url.toString());
+                                bebida.salvarBebida();
+                                Toast.makeText(CadastroFotoBebida.this,"Sucesso ao fazer Upload da Imagem",Toast.LENGTH_LONG).show();
                                 finish();
                             }
                         });
                     }
                 });
+
             }
-            else{
-                Toast.makeText(CadastroFotoPrato.this,"Adinione uma foto à bebida", Toast.LENGTH_LONG).show();
+            else {
+                Toast.makeText(CadastroFotoBebida.this,"Adinione uma foto à bebida", Toast.LENGTH_LONG).show();
             }
+
         }
     }
-
 }

@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.sistemarestaurante.Model.Prato;
@@ -27,9 +25,9 @@ public class CadastroPratoActicity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_prato_acticity);
 
         //configurações iniciais
-        editNomePrato = findViewById(R.id.editNomePrato);
-        buttonAdicionar = findViewById(R.id.buttonAdicionarPrato);
-        editValorPrato = findViewById(R.id.editValorPrato);
+        editNomePrato = findViewById(R.id.editNomeBebida);
+        buttonAdicionar = findViewById(R.id.buttonAdicionarBebida);
+        editValorPrato = findViewById(R.id.editValorBebida);
 
 
         buttonAdicionar.setOnClickListener(new View.OnClickListener() {

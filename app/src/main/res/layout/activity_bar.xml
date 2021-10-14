@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Funcoes.CozinhaActivity">
+    tools:context=".Funcoes.BarActivity">
 
-    <include layout="@layout/content_cozinha" />
+    <include layout="@layout/content_bar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabBar"

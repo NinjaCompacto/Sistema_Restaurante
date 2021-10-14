@@ -52,12 +52,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if(!task.isSuccessful()){
-                    Log.i("firebase", "Error getting data", task.getException());
+                    Log.d("firebase", "Error getting data", task.getException());
                 }
                 else {
-                    Log.i("firebase", String.valueOf(task.getResult().getValue()));
+                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
                     usuario = task.getResult().getValue(Usuario.class);
                     textViewBoasVindas.setText("Bem-Vindo, "+ usuario.getNome() + " !");
+                    Log.d("firebase",usuario.getFuncao());
 
                     switch (usuario.getFuncao()){
                         case "Garçom" :
@@ -70,15 +71,16 @@ public class MainActivity extends AppCompatActivity {
                             finish();
                             startActivity(iEstoque);
                             break;
+                        case "Bar":
+                            Intent iBar = new Intent(MainActivity.this,BarActivity.class);
+                            finish();
+                            startActivity(iBar);
+                            break;
                         case "Cozinha":
                             Intent iCozinha = new Intent(MainActivity.this, CozinhaActivity.class);
                             finish();
                             startActivity(iCozinha);
                             break;
-                        case "Bar":
-                            Intent iBar = new Intent(MainActivity.this, BarActivity.class);
-                            finish();
-                            startActivity(iBar);
                         case "Central de Reposição":
                             Intent iCentral= new Intent(MainActivity.this, CentralReposicaoActivity.class);
                             finish();

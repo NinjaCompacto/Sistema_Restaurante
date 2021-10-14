@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-       // auth.signOut();
+        //auth.signOut();
     }
 
     @Override
