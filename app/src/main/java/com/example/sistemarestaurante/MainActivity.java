@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (usuario.getFuncao()){
                         case "Garçom" :
-                            Intent iGarçom = new Intent(MainActivity.this,GarcomActivity.class);
+                            Intent iGarçom = new Intent(MainActivity.this, GarcomActivity.class);
                             finish();
                             startActivity(iGarçom);
                             break;
