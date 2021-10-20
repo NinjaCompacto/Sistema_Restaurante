@@ -15,15 +15,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
+        <activity
+            android:name=".Activitys.AtualizarNomeCliente"
+            android:exported="true"
+            android:parentActivityName=".Funcoes.GarcomActivity"
+            android:label="Atualizar Cliente"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".Activitys.FazerPedidosPratoActivity"
+            android:exported="true"
+            android:label="Fazer Pedido"
+            android:parentActivityName=".Funcoes.GarcomActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Funcoes.GarcomActivity"
             android:exported="true"
             android:label="@string/title_activity_garcom"
-            android:theme="@style/AppTheme" />
-
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activitys.CadastroFotoBebida"
             android:exported="true"
@@ -37,15 +45,13 @@
             android:name=".Activitys.CadastroMesaActivity"
             android:exported="true"
             android:label="Nova Mesa"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".Funcoes.GarcomActivity"/>
-
-
+            android:parentActivityName=".Funcoes.GarcomActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Funcoes.BarActivity"
             android:exported="true"
             android:label="Bar"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activitys.CadastroFotoPrato"
             android:exported="true"
@@ -68,8 +74,6 @@
         <activity
             android:name=".Funcoes.CozinhaActivity"
             android:exported="true" />
-
-
         <activity
             android:name=".Cadastro_e_login.FotoCadastroActivity"
             android:exported="true"

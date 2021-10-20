@@ -1,8 +1,9 @@
 package com.example.sistemarestaurante.Model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Mesa {
+public class Mesa implements Serializable {
 
     private String numeroMesa ;
     private String nomeCliente;
