@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.sistemarestaurante.Activitys.AtualizarNomeCliente;
+import com.example.sistemarestaurante.Activitys.CadastrarNomeCliente;
 import com.example.sistemarestaurante.Activitys.CadastroMesaActivity;
 import com.example.sistemarestaurante.Activitys.FazerPedidosPratoActivity;
 import com.example.sistemarestaurante.Adapters.MesasAdapter;
@@ -57,6 +58,7 @@ public class GarcomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_garcom);
         //configurações iniciais
         recyclerView = findViewById(R.id.recyclerMesas);
+        //preenche a lista de mesas para ser passada para o adapter
         recuperarMesas();
 
         //configurando adpter
@@ -66,15 +68,24 @@ public class GarcomActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+        //seta evento de click nos itens do adapter
         recyclerView.addOnItemTouchListener(new RecyclerViewClickListener(getApplicationContext(), recyclerView, new RecyclerViewClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Mesa mesa = listaMesas.get(position);
-                Intent i = new Intent(getApplicationContext(),FazerPedidosPratoActivity.class);
-                i.putExtra("mesa",mesa);
-                startActivity(i);
+                //abre a tela de atualização de cadastro caso não haja cliente cadastrado na mesa
+                if (mesa.getNomeCliente().contains("Nenhum Cliente")) {
+                    Intent i = new Intent(getApplicationContext(), CadastrarNomeCliente.class);
+                    i.putExtra("mesa", mesa);
+                    startActivity(i);
+                }
+                else {
+                    Intent i = new Intent(getApplicationContext(), FazerPedidosPratoActivity.class);
+                    i.putExtra("mesa", mesa);
+                    startActivity(i);
+                }
             }
-
+            //seta opção de atualização do cliente que esta na mesa
             @Override
             public void onLongItemClick(View view, int position) {
                 Mesa mesa = listaMesas.get(position);

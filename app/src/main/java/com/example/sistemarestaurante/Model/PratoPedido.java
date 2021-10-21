@@ -2,7 +2,7 @@ package com.example.sistemarestaurante.Model;
 
 public class PratoPedido {
     private Prato prato;
-    private String Quantidade;
+    private  int quantidade;
 
     public Prato getPrato() {
         return prato;
@@ -12,12 +12,12 @@ public class PratoPedido {
         this.prato = prato;
     }
 
-    public String getQuantidade() {
-        return Quantidade;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setQuantidade(String quantidade) {
-        Quantidade = quantidade;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 }
 

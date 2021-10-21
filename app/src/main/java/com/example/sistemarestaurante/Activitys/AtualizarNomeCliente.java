@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +35,7 @@ public class AtualizarNomeCliente extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atualizar_nome_cliente);
 
-        editNomeCliente = findViewById(R.id.editAtualizarCliente);
+        editNomeCliente = findViewById(R.id.editNomeCliente);
 
 
         if (getIntent().getExtras() != null){

@@ -16,11 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Adapters.PratoPedidosAdapter"
+            android:exported="true" />
+        <activity
+            android:name=".Activitys.CadastrarNomeCliente"
+            android:exported="true"
+            android:label="Cadastro Cliente"
+            android:parentActivityName=".Funcoes.GarcomActivity"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".Activitys.AtualizarNomeCliente"
             android:exported="true"
-            android:parentActivityName=".Funcoes.GarcomActivity"
             android:label="Atualizar Cliente"
-            android:theme="@style/AppTheme"/>
+            android:parentActivityName=".Funcoes.GarcomActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activitys.FazerPedidosPratoActivity"
             android:exported="true"
