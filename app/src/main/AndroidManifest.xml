@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.sistemarestaurante">
 
     <uses-feature
@@ -16,8 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Activitys.MudarStatusActivity"
+            android:exported="true"
+            android:parentActivityName=".Funcoes.CozinhaActivity"
+            android:label="Mudar Disponibilidade"/>
+        <activity
             android:name=".Adapters.PratoPedidosAdapter"
-            android:exported="true" />
+            android:exported="true"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Activitys.CadastrarNomeCliente"
             android:exported="true"
@@ -39,8 +46,8 @@
         <activity
             android:name=".Funcoes.GarcomActivity"
             android:exported="true"
-            android:label="@string/title_activity_garcom"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Sistema Restaurante"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activitys.CadastroFotoBebida"
             android:exported="true"

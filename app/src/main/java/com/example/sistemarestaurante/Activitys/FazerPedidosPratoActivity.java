@@ -83,6 +83,9 @@ public class FazerPedidosPratoActivity extends AppCompatActivity {
                     if (dados.getValue(Prato.class).getIsDisponivel().contains("true")){
                          listaPratos.add(dados.getValue(Prato.class));
                     }
+                    if (dados.getValue(Prato.class).getIsDisponivel().contains("false") && listaPratos.contains(dados.getValue(Prato.class)) ){
+                        listaPratos.remove(dados.getValue(Prato.class));
+                    }
                     pratoPedidosAdapter.notifyDataSetChanged();
                 }
             }
