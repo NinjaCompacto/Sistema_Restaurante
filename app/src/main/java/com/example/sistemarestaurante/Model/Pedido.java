@@ -1,20 +1,21 @@
 package com.example.sistemarestaurante.Model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Pedido {
+public class Pedido implements Serializable {
 
     private String nomeGarçom;
-    private List<PratoPedido> prato;
+    private List<PratoPedido> comida;
     private List<Bebida> bebida;
     private String obs;
 
-    public List<PratoPedido> getPrato() {
-        return prato;
+    public List<PratoPedido> getComida() {
+        return comida;
     }
 
-    public void setPrato(List<PratoPedido> prato) {
-        this.prato = prato;
+    public void setComida(List<PratoPedido> comida) {
+        this.comida = comida;
     }
 
     public List<Bebida> getBebida() {

@@ -1,6 +1,8 @@
 package com.example.sistemarestaurante.Model;
 
-public class PratoPedido {
+import java.io.Serializable;
+
+public class PratoPedido implements Serializable {
     private Prato prato;
     private  int quantidade;
 

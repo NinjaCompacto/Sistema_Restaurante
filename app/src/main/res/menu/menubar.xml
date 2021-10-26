@@ -6,4 +6,9 @@
         app:showAsAction="never"
         android:orderInCategory="100"
         android:title="Sair"/>
+    <item
+        android:id="@+id/menuStatus"
+        app:showAsAction="never"
+        android:orderInCategory="90"
+        android:title="Mudar Status"/> 
 </menu>

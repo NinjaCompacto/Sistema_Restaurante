@@ -1,6 +1,8 @@
 package com.example.sistemarestaurante.Activitys;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sistemarestaurante.Adapters.PratoPedidosAdapter;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
 import com.example.sistemarestaurante.Model.Mesa;
+import com.example.sistemarestaurante.Model.Pedido;
 import com.example.sistemarestaurante.Model.Prato;
+import com.example.sistemarestaurante.Model.PratoPedido;
 import com.example.sistemarestaurante.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -32,11 +36,13 @@ public class FazerPedidosPratoActivity extends AppCompatActivity {
     //model
     private Mesa mesaSelecionada;
     private List<Prato> listaPratos = new ArrayList<>();
+    private List<Pedido> listadepedidos = new ArrayList<>();
     private PratoPedidosAdapter pratoPedidosAdapter;
-
+    private Pedido pedido = new Pedido();
     //firebase
     private  DatabaseReference databaseReference = ConfiguracaoFirebase.getDatabaseReference();
     private  DatabaseReference pratosref;
+    private DatabaseReference mesaref;
     private ValueEventListener valueEventListener;
 
     @Override
@@ -46,11 +52,12 @@ public class FazerPedidosPratoActivity extends AppCompatActivity {
 
         recyclerPratos = findViewById(R.id.recyclerPratos);
         textInfoMesaSelecionada = findViewById(R.id.textInfoMesa);
+        fab = findViewById(R.id.fabConfirmarPedido);
 
         if(getIntent().getExtras() != null){
             mesaSelecionada = (Mesa)  getIntent().getExtras().getSerializable("mesa");
             textInfoMesaSelecionada.setText("Mesa: "+ mesaSelecionada.getNumeroMesa() +"   Nome Cliente: " + mesaSelecionada.getNomeCliente() );
-
+            mesaref = databaseReference.child("mesas").child(mesaSelecionada.getNumeroMesa());
         }
 
         recuperarpratos();
@@ -63,6 +70,22 @@ public class FazerPedidosPratoActivity extends AppCompatActivity {
         recyclerPratos.setHasFixedSize(true);
         recyclerPratos.setAdapter(pratoPedidosAdapter);
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                pedido.setComida(pratoPedidosAdapter.getpedidos());
+                listadepedidos.add(pedido);
+                /*
+                Log.i("listapedido", listadepedidos.get(0).getPrato().getNomePrato());
+                Log.i("listapedido", String.valueOf(listadepedidos.get(0).getQuantidade()));
+                Log.i("listapedido", listadepedidos.get(1).getPrato().getNomePrato());
+                Log.i("listapedido", String.valueOf(listadepedidos.get(1).getQuantidade()));*/
+               mesaSelecionada.setPedidos(listadepedidos);
+                mesaref.setValue(mesaSelecionada);
+                listadepedidos.clear();
+            }
+        });
 
 
     }

@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
 import com.example.sistemarestaurante.Model.Mesa;
 import com.example.sistemarestaurante.Model.Pedido;
+import com.example.sistemarestaurante.Model.Prato;
+import com.example.sistemarestaurante.Model.PratoPedido;
 import com.example.sistemarestaurante.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
