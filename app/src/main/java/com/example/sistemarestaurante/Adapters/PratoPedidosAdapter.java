@@ -3,22 +3,23 @@ package com.example.sistemarestaurante.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.sistemarestaurante.Model.Pedido;
+
 import com.example.sistemarestaurante.Model.Prato;
 import com.example.sistemarestaurante.Model.PratoPedido;
 import com.example.sistemarestaurante.R;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,6 @@ public class PratoPedidosAdapter extends RecyclerView.Adapter<PratoPedidosAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderPratos holder, @SuppressLint("RecyclerView") int position) {
         Prato prato = pratos.get(position);
-       ///COLOCAR IFNAQ PARA RECUPERAR PEDIDOS ANTERIORES
         pratoPedido = new PratoPedido();
         pratoPedido.setPrato(prato);
         pratoPedido.setQuantidade(0);

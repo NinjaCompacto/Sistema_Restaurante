@@ -8,7 +8,7 @@ public class Pedido implements Serializable {
     private String nomeGarçom;
     private List<PratoPedido> comida;
     private List<Bebida> bebida;
-    private String obs;
+
 
     public List<PratoPedido> getComida() {
         return comida;
@@ -24,14 +24,6 @@ public class Pedido implements Serializable {
 
     public void setBebida(List<Bebida> bebida) {
         this.bebida = bebida;
-    }
-
-    public String getObs() {
-        return obs;
-    }
-
-    public void setObs(String obs) {
-        this.obs = obs;
     }
 
     public String getNomeGarçom() {

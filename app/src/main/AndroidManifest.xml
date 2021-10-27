@@ -17,10 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Activitys.AdiconarObsPratoActivity"
+            android:exported="true"
+            android:label="Adicionar Observações"
+            android:parentActivityName=".Funcoes.GarcomActivity"/>
+        <activity
             android:name=".Activitys.MudarStatusActivity"
             android:exported="true"
-            android:parentActivityName=".Funcoes.CozinhaActivity"
-            android:label="Mudar Disponibilidade"/>
+            android:label="Mudar Disponibilidade"
+            android:parentActivityName=".Funcoes.CozinhaActivity" />
         <activity
             android:name=".Adapters.PratoPedidosAdapter"
             android:exported="true"
