@@ -129,6 +129,7 @@ public class FazerPedidosPratoActivity extends AppCompatActivity {
                 //passa lista de pratos pedidos para fazar observação em cada um deles
                 Intent i = new Intent(FazerPedidosPratoActivity.this,AdiconarObsPratoActivity.class);
                 i.putExtra("mesa", mesaSelecionada);
+                i.putExtra("listapratos", (Serializable) listPratosPedidos);
                 //limpa a lista de pedidos para que não haja listagem em dobro
                 startActivity(i);
                 finish();
