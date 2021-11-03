@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.sistemarestaurante.Activitys.CadastroPratoActicity;
-import com.example.sistemarestaurante.Activitys.MudarStatusActivity;
+import com.example.sistemarestaurante.Activitys.MudarPratoStatusActivity;
 import com.example.sistemarestaurante.Cadastro_e_login.LoginActivity;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
 import com.example.sistemarestaurante.R;
@@ -65,7 +65,7 @@ public class CozinhaActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.menuStatus:
-                Intent istatus = new Intent(CozinhaActivity.this , MudarStatusActivity.class);
+                Intent istatus = new Intent(CozinhaActivity.this , MudarPratoStatusActivity.class);
                 startActivity(istatus);
                 break;
         }

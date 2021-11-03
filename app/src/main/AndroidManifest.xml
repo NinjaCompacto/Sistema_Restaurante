@@ -18,17 +18,25 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Adapters.ObsPratoAdapter"
-            android:exported="true" />
+            android:exported="true"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".Activitys.AdiconarObsPratoActivity"
             android:exported="true"
             android:label="Adicionar Observações"
             android:parentActivityName=".Funcoes.GarcomActivity" />
         <activity
-            android:name=".Activitys.MudarStatusActivity"
+            android:name=".Activitys.MudarPratoStatusActivity"
             android:exported="true"
             android:label="Mudar Disponibilidade"
             android:parentActivityName=".Funcoes.CozinhaActivity" />
+        <activity
+            android:name=".MudarBebidaStatusActivity"
+            android:exported="true"
+            android:parentActivityName=".Funcoes.BarActivity"
+            android:label="Mudar Disponibilidade"
+            android:theme="@style/AppTheme"
+            />
         <activity
             android:name=".Adapters.PratoPedidosAdapter"
             android:exported="true"
@@ -75,7 +83,7 @@
             android:name=".Funcoes.BarActivity"
             android:exported="true"
             android:label="Bar"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activitys.CadastroFotoPrato"
             android:exported="true"

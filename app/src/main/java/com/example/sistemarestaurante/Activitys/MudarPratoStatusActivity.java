@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -27,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MudarStatusActivity extends AppCompatActivity {
+public class MudarPratoStatusActivity extends AppCompatActivity {
 
     //XML
     private RecyclerView recyclerDisponivel, recyclerIndisponivel;
@@ -36,7 +34,7 @@ public class MudarStatusActivity extends AppCompatActivity {
     private FloatingActionButton fab;
 
     //firebase
-    private DatabaseReference databaseReference = ConfiguracaoFirebase.getDatabaseReference();
+    private final DatabaseReference databaseReference = ConfiguracaoFirebase.getDatabaseReference();
     private DatabaseReference pratosref;
 
     //model
@@ -121,7 +119,7 @@ public class MudarStatusActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Status salvo !", Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(),"Status salvo !", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
@@ -137,6 +135,7 @@ public class MudarStatusActivity extends AppCompatActivity {
         valueEventListener = pratosref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //limpa as listas para q n haja repetição de listagem de itens
                     pratosIndisponiveis.clear();
                     pratosDisponiveis.clear();
                 for (DataSnapshot dados : snapshot.getChildren()){

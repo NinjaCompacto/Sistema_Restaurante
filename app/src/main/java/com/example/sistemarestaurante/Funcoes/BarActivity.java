@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sistemarestaurante.Activitys.CadastroBebidaActivity;
 import com.example.sistemarestaurante.Cadastro_e_login.LoginActivity;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
+import com.example.sistemarestaurante.MudarBebidaStatusActivity;
 import com.example.sistemarestaurante.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,6 +58,10 @@ public class BarActivity extends AppCompatActivity {
                 Intent i = new Intent(BarActivity.this, LoginActivity.class);
                 startActivity(i);
                 finish();
+                break;
+            case R.id.menuStatus:
+                Intent i1 = new Intent(BarActivity.this, MudarBebidaStatusActivity.class);
+                startActivity(i1);
                 break;
         }
         return super.onOptionsItemSelected(item);
