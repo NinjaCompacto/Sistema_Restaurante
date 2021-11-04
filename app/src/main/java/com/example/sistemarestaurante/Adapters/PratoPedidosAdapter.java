@@ -64,7 +64,6 @@ public class PratoPedidosAdapter extends RecyclerView.Adapter<PratoPedidosAdapte
                     if (quantidade >= 0) {
                         PratoPedido pratoPedido1 = pratosequantidades.get(position);
                         pratoPedido1.setQuantidade(novaquantidade);
-                        //pratosequantidades.add(pratoPedido1);
                         holder.textQuantidade.setText(String.valueOf(novaquantidade));
                     }
 
@@ -80,7 +79,6 @@ public class PratoPedidosAdapter extends RecyclerView.Adapter<PratoPedidosAdapte
                 if (quantidade >= 0){
                     PratoPedido pratoPedido1 = pratosequantidades.get(position);
                     pratoPedido1.setQuantidade(novaquantidade);
-                    //pratosequantidades.add(pratoPedido1);
                 }
             }
         });

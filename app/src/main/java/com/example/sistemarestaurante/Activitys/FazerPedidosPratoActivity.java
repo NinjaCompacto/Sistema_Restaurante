@@ -51,7 +51,7 @@ public class FazerPedidosPratoActivity extends AppCompatActivity {
     private Pedido pedido = new Pedido();
     private Usuario garçom;
     //firebase
-    private  DatabaseReference databaseReference = ConfiguracaoFirebase.getDatabaseReference();
+    private final DatabaseReference databaseReference = ConfiguracaoFirebase.getDatabaseReference();
     private  DatabaseReference pratosref;
     private DatabaseReference garcomref;
     private FirebaseUser user = UsuarioFireBase.getUsuarioLogado();
@@ -114,22 +114,18 @@ public class FazerPedidosPratoActivity extends AppCompatActivity {
                     //adiciona pedido a lista de pedidos
                     listadepedidos.add(pedido);
                 }else {
-                    listadepedidos = mesaSelecionada.getPedidos();
                     for (PratoPedido pratoPedido : pratoPedidosAdapter.getpedidos()) {
                         if (pratoPedido.getQuantidade() > 0) {
                             listPratosPedidos.add(pratoPedido);
                         }
                     }
-                    pedido.setComida(listPratosPedidos);
-                    listadepedidos.add(pedido);
 
                 }
-                //seta lista de pedidos atualizada no objeto mesa
-                mesaSelecionada.setPedidos(listadepedidos);
                 //passa lista de pratos pedidos para fazar observação em cada um deles
                 Intent i = new Intent(FazerPedidosPratoActivity.this,AdiconarObsPratoActivity.class);
                 i.putExtra("mesa", mesaSelecionada);
                 i.putExtra("listapratos", (Serializable) listPratosPedidos);
+                i.putExtra("garçom",garçom);
                 //limpa a lista de pedidos para que não haja listagem em dobro
                 startActivity(i);
                 finish();

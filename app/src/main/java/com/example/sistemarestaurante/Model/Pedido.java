@@ -7,8 +7,15 @@ public class Pedido implements Serializable {
 
     private String nomeGarçom;
     private List<PratoPedido> comida;
-    private List<Bebida> bebida;
+    private List<BebidaPedida> bebida;
 
+    public List<BebidaPedida> getBebida() {
+        return bebida;
+    }
+
+    public void setBebida(List<BebidaPedida> bebida) {
+        this.bebida = bebida;
+    }
 
     public List<PratoPedido> getComida() {
         return comida;
@@ -18,13 +25,6 @@ public class Pedido implements Serializable {
         this.comida = comida;
     }
 
-    public List<Bebida> getBebida() {
-        return bebida;
-    }
-
-    public void setBebida(List<Bebida> bebida) {
-        this.bebida = bebida;
-    }
 
     public String getNomeGarçom() {
         return nomeGarçom;

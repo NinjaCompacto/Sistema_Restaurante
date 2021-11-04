@@ -11,10 +11,13 @@ import android.view.View;
 
 import com.example.sistemarestaurante.Adapters.ObsPratoAdapter;
 import com.example.sistemarestaurante.Model.Mesa;
+import com.example.sistemarestaurante.Model.Pedido;
 import com.example.sistemarestaurante.Model.PratoPedido;
+import com.example.sistemarestaurante.Model.Usuario;
 import com.example.sistemarestaurante.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdiconarObsPratoActivity extends AppCompatActivity {
@@ -28,6 +31,8 @@ public class AdiconarObsPratoActivity extends AppCompatActivity {
     private Mesa mesa;
     private List<PratoPedido> pratoPedidos;
     private List<PratoPedido> pratoPedidosAtualizado;
+    private Pedido pedidosAtualizado = new Pedido();
+    private Usuario garçom;
 
 
     @Override
@@ -43,6 +48,7 @@ public class AdiconarObsPratoActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null){
             mesa = (Mesa)getIntent().getExtras().getSerializable("mesa");
             pratoPedidos = (List<PratoPedido>) getIntent().getExtras().getSerializable("listapratos");
+            garçom = (Usuario) getIntent().getExtras().getSerializable("garçom");
         }
 
         //recyclerview
@@ -57,7 +63,13 @@ public class AdiconarObsPratoActivity extends AppCompatActivity {
             public void onClick(View v) {
                if (obsPratoAdapter.recuperaListaAtualizada() != null) {
                    pratoPedidosAtualizado = obsPratoAdapter.recuperaListaAtualizada();
-                   //adcionar intent para fazer a msm coisa para o bar
+                   pedidosAtualizado.setComida(pratoPedidosAtualizado);
+                   pedidosAtualizado.setNomeGarçom(garçom.getNome());
+                   Intent i = new Intent(getApplicationContext(),FazerPedidoBebidaActivity.class);
+                   i.putExtra("mesa",mesa);
+                   i.putExtra("pedido",pedidosAtualizado);
+                   i.putExtra("garçom",garçom);
+                   startActivity(i);
                }
 
             }
