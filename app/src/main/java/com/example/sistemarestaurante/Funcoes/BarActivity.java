@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sistemarestaurante.Activitys.CadastroBebidaActivity;
 import com.example.sistemarestaurante.Cadastro_e_login.LoginActivity;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
-import com.example.sistemarestaurante.MudarBebidaStatusActivity;
+import com.example.sistemarestaurante.Activitys.MudarBebidaStatusActivity;
 import com.example.sistemarestaurante.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;

@@ -17,6 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Activitys.FazerPedidoBebidaActivity"
+            android:exported="true"
+            android:label="Pedido de Bebidas"
+            android:parentActivityName=".Funcoes.GarcomActivity"/>
+        <activity
             android:name=".Adapters.ObsPratoAdapter"
             android:exported="true"
             tools:ignore="Instantiatable" />
@@ -26,17 +31,21 @@
             android:label="Adicionar Observações"
             android:parentActivityName=".Funcoes.GarcomActivity" />
         <activity
+            android:name=".Activitys.AdicionarObsBebidaActivity"
+            android:exported="true"
+            android:label="Adicionar Observações"
+            android:parentActivityName=".Funcoes.GarcomActivity"/>
+        <activity
             android:name=".Activitys.MudarPratoStatusActivity"
             android:exported="true"
             android:label="Mudar Disponibilidade"
             android:parentActivityName=".Funcoes.CozinhaActivity" />
         <activity
-            android:name=".MudarBebidaStatusActivity"
+            android:name=".Activitys.MudarBebidaStatusActivity"
             android:exported="true"
-            android:parentActivityName=".Funcoes.BarActivity"
             android:label="Mudar Disponibilidade"
-            android:theme="@style/AppTheme"
-            />
+            android:parentActivityName=".Funcoes.BarActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Adapters.PratoPedidosAdapter"
             android:exported="true"

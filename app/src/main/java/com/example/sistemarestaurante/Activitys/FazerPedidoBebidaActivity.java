@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +84,7 @@ public class FazerPedidoBebidaActivity extends AppCompatActivity {
                             bebidaPedidas.add(bebidaPedida);
                         }
                     }
-                    pedido.setBebida(bebidaPedidas);
+                    //pedido.setBebida(bebidaPedidas);
                     listapedidos.add(pedido);
                 }
                 else{
@@ -92,13 +94,20 @@ public class FazerPedidoBebidaActivity extends AppCompatActivity {
                             bebidaPedidas.add(bebidaPedida);
                         }
                     }
-                    pedido.setBebida(bebidaPedidas);
+                    //pedido.setBebida(bebidaPedidas);
+
                     //deixar para adicionar pedido na lista de pedidos da mesa na tela final ou seja na proxima
                     //listapedidos.add(pedido);
                 }
-
+                //passar a lista de bebidas pedidas para fazer obs
+                Intent i = new Intent(FazerPedidoBebidaActivity.this,AdicionarObsBebidaActivity.class);
+                i.putExtra("bebidas", (Serializable) bebidaPedidas);
                 //passar mesa para proxima tela para seta pedidos no final do processo[
+                i.putExtra("mesa", mesa);
                 //passar o objeto pedido
+                i.putExtra("pedido", pedido);
+                startActivity(i);
+                finish();
 
             }
         });

@@ -3,9 +3,9 @@ package com.example.sistemarestaurante.Adapters;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.sistemarestaurante.BuildConfig;
-import com.example.sistemarestaurante.Model.Pedido;
-import com.example.sistemarestaurante.Model.Prato;
 import com.example.sistemarestaurante.Model.PratoPedido;
 import com.example.sistemarestaurante.R;
 
@@ -45,8 +42,9 @@ public class ObsPratoAdapter extends RecyclerView.Adapter<ObsPratoAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHoderObsPratos holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHoderObsPratos holder, @SuppressLint("RecyclerView") int position) {
         PratoPedido pratoPedido = pedidos.get(position);
+        pedidosComObs.add(pratoPedido);
         holder.textNomePratoObs.setText(pratoPedido.getPrato().getNomePrato());
         holder.textValorPratoObs.setText("R$ " + pratoPedido.getPrato().getValor());
         if (pratoPedido.getPrato().getFoto() != null){
@@ -56,11 +54,9 @@ public class ObsPratoAdapter extends RecyclerView.Adapter<ObsPratoAdapter.MyView
         holder.buttonAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.editTextObsPrato.getText().toString() != null){
-                    pratoPedido.setObs(holder.editTextObsPrato.getText().toString());
-                    pedidosComObs.add(pratoPedido);
-                    Toast.makeText(context,"Observação adicionada !", Toast.LENGTH_SHORT).show();
-                }
+                PratoPedido pratoPedido1 = pedidosComObs.get(position);
+                pratoPedido1.setObs(holder.editTextObsPrato.getText().toString());
+                Toast.makeText(context,"Observação Adicionada !", Toast.LENGTH_SHORT).show();
             }
         });
 

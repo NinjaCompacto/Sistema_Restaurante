@@ -70,6 +70,7 @@ public class AdiconarObsPratoActivity extends AppCompatActivity {
                    i.putExtra("pedido",pedidosAtualizado);
                    i.putExtra("garçom",garçom);
                    startActivity(i);
+                   finish();
                }
 
             }

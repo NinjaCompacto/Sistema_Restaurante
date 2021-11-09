@@ -1,4 +1,4 @@
-package com.example.sistemarestaurante;
+package com.example.sistemarestaurante.Activitys;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +16,7 @@ import com.example.sistemarestaurante.Adapters.StatusIndisponivelBebidaAdapter;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
 import com.example.sistemarestaurante.Helper.RecyclerViewClickListener;
 import com.example.sistemarestaurante.Model.Bebida;
+import com.example.sistemarestaurante.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

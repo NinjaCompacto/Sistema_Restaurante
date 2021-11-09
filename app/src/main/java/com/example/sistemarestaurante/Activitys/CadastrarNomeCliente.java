@@ -59,6 +59,7 @@ public class CadastrarNomeCliente extends AppCompatActivity {
                         Intent i = new Intent(getApplicationContext(),FazerPedidosPratoActivity.class);
                         i.putExtra("mesa",mesa);
                         startActivity(i);
+                        finish();
                     }
                 });
 
