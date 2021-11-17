@@ -15,6 +15,8 @@ import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -141,7 +143,8 @@ public class GarcomActivity extends AppCompatActivity {
             for (DataSnapshot dados : snapshot.getChildren()){
                 listaMesas.add(dados.getValue(Mesa.class));
             }
-            adapter.notifyDataSetChanged();
+           adapter.notifyDataSetChanged();
+            //notificarmesanova();
             }
 
             @Override
@@ -152,4 +155,17 @@ public class GarcomActivity extends AppCompatActivity {
 
 
     }
+
+    //faz alerta por notificação para avisar de uma nova mesa
+    public void notificarmesanova () {
+        NotificationCompat.Builder notificação = new NotificationCompat.Builder(this,"1")
+                .setSmallIcon(R.drawable.ic_baseline_add_24)
+                .setContentTitle("Mesa Nova")
+                .setContentText("Uma nova mesa foi adicionada !")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat mn = NotificationManagerCompat.from(this);
+        mn.notify(1,notificação.build());
+    }
+
 }

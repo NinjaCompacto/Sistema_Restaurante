@@ -8,6 +8,24 @@ public class Pedido implements Serializable {
     private String nomeGarçom;
     private List<PratoPedido> comida;
     private List<BebidaPedida> bebida;
+    private String Status;
+    private String numeroMesa;
+
+    public String getNumeroMesa() {
+        return numeroMesa;
+    }
+
+    public void setNumeroMesa(String numeroMesa) {
+        this.numeroMesa = numeroMesa;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
 
     public List<BebidaPedida> getBebida() {
         return bebida;
