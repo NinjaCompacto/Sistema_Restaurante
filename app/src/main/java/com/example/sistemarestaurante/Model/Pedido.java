@@ -8,9 +8,27 @@ public class Pedido implements Serializable {
     private String nomeGarçom;
     private List<PratoPedido> comida;
     private List<BebidaPedida> bebida;
-    private String Status;
+    private String comidaStauts;
+    private String bebidaStauts;
     private String numeroMesa;
+    private String id;
 
+    public String getBebidaStauts() {
+        return bebidaStauts;
+    }
+
+    public void setBebidaStauts(String bebidaStauts) {
+        this.bebidaStauts = bebidaStauts;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getNumeroMesa() {
         return numeroMesa;
     }
@@ -19,12 +37,12 @@ public class Pedido implements Serializable {
         this.numeroMesa = numeroMesa;
     }
 
-    public String getStatus() {
-        return Status;
+    public String getComidaStauts() {
+        return comidaStauts;
     }
 
-    public void setStatus(String status) {
-        Status = status;
+    public void setComidaStauts(String comidaStauts) {
+        this.comidaStauts = comidaStauts;
     }
 
     public List<BebidaPedida> getBebida() {

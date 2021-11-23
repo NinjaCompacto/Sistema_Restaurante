@@ -1,12 +1,11 @@
 package com.example.sistemarestaurante.Activitys;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.View;
 
 import com.example.sistemarestaurante.Adapters.ObsBebidaAdapter;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
@@ -17,13 +16,14 @@ import com.example.sistemarestaurante.Model.PratoPedido;
 import com.example.sistemarestaurante.Model.Usuario;
 import com.example.sistemarestaurante.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class AdicionarObsBebidaActivity extends AppCompatActivity {
 
@@ -70,27 +70,65 @@ public class AdicionarObsBebidaActivity extends AppCompatActivity {
         fabObsBebidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    String idPedido = criarId();
                     bebidaPedidascomObs = obsBebidaAdapter.getBebidaPedidascomObs();
 
                     if (mesa.getPedidos() == null) {
                         pedido.setBebida(bebidaPedidascomObs);
-                        pedido.setStatus("em aberto");
                         pedido.setNumeroMesa(mesa.getNumeroMesa());
+                        pedido.setId(idPedido);
+                        if (pedido.getComida().isEmpty()){
+                            pedido.setComidaStauts("não tem");
+                        }
+                        else {
+                            pedido.setComidaStauts("em aberto");
+                        }
+
+                        if(pedido.getBebida().isEmpty()){
+                            pedido.setBebidaStauts("não tem");
+                        }
+                        else {
+                            pedido.setBebidaStauts("em aberto");
+                        }
+
                         pedidos.add(pedido);
                     }
                     else {
+
+
                         pedidos = mesa.getPedidos();
                         pedido.setBebida(bebidaPedidascomObs);
-                        pedido.setStatus("em aberto");
                         pedido.setNumeroMesa(mesa.getNumeroMesa());
+                        pedido.setId(idPedido);
+
+                        if (pedido.getComida().isEmpty()){
+                            pedido.setComidaStauts("não tem");
+                        }
+                        else {
+                            pedido.setComidaStauts("em aberto");
+                        }
+
+                        if(pedido.getBebida().isEmpty()){
+                            pedido.setBebidaStauts("não tem");
+                        }
+                        else {
+                            pedido.setBebidaStauts("em aberto");
+                        }
                         pedidos.add(pedido);
                     }
+
                     mesa.setPedidos(pedidos);
                     mesa.salvarmesa();
                     finish();
 
             }
         });
+    }
+
+    public String criarId() {
+        UUID uniqueKey = UUID.randomUUID();
+        String id = uniqueKey.toString();
+        return id;
     }
 
 
