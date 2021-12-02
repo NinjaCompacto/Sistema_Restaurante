@@ -46,34 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/buttonStatusPreparando"
-
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonshape"
-
-            android:shadowColor="#A8A8A8"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="5"
-            android:text="Preparando"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-
-        <Button
-            android:id="@+id/buttonStatusPronto"
-
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-
-            android:background="@drawable/buttonshapepronto"
-            android:text="Pronto"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-    </LinearLayout>
+        android:orientation="vertical"/>
 </LinearLayout>
 

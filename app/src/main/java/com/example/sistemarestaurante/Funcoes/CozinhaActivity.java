@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.sistemarestaurante.Activitys.MudarPratoStatusActivity;
+import com.example.sistemarestaurante.Activitys.PedidoPratoActivity;
 import com.example.sistemarestaurante.Adapters.ListaPratoPedidosAdapter;
 import com.example.sistemarestaurante.Cadastro_e_login.LoginActivity;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
+import com.example.sistemarestaurante.Helper.RecyclerViewClickListener;
 import com.example.sistemarestaurante.Model.Mesa;
 import com.example.sistemarestaurante.Model.Pedido;
 import com.example.sistemarestaurante.R;
@@ -24,6 +26,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +68,28 @@ public class CozinhaActivity extends AppCompatActivity {
         recyclerListaPratoPedidos.setHasFixedSize(true);
         recyclerListaPratoPedidos.setAdapter(listaPratoPedidosAdapter);
 
+        recyclerListaPratoPedidos.addOnItemTouchListener(new RecyclerViewClickListener(getApplicationContext(),
+                recyclerListaPratoPedidos,
+                new RecyclerViewClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Pedido pedidoSelecionado = pedidosFiltrado.get(position);
+                        Intent i = new Intent(getApplicationContext(), PedidoPratoActivity.class);
+                        i.putExtra("pedido",pedidoSelecionado);
+                        startActivity(i);
+                        finish();
+                    }
 
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+                }));
 
 
     }

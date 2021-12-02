@@ -2,6 +2,7 @@ package com.example.sistemarestaurante.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sistemarestaurante.Activitys.PedidoPratoActivity;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
 import com.example.sistemarestaurante.Model.Mesa;
 import com.example.sistemarestaurante.Model.Pedido;
@@ -54,6 +56,7 @@ public class ListaPratoPedidosAdapter  extends RecyclerView.Adapter<ListaPratoPe
         Pedido pedido = pedidos.get(position);
         holder.textPedido.setText("Pedido: Mesa" + pedido.getNumeroMesa());
 
+
         //configurando status incial
         if (pedido.getComidaStauts().contains("preparando")){
             holder.textStatus.setTextColor(Color.YELLOW);
@@ -79,68 +82,6 @@ public class ListaPratoPedidosAdapter  extends RecyclerView.Adapter<ListaPratoPe
         }
         holder.textinfoPrato.setText(textinfo);
 
-        //seta evento de click para mudar status do pedido (preparando)
-        holder.buttonPreparando.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //faz a mudança no banco de dados
-                mesaref = databaseReference.child("mesas").child(pedido.getNumeroMesa());
-                mesaref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                         Mesa mesa = task.getResult().getValue(Mesa.class);
-                         List<Pedido> listPedidos = mesa.getPedidos();
-                         List<Pedido> listPedidosAtualizados = new ArrayList<>();
-                        for (Pedido pedido1 : listPedidos){
-                            if (pedido1.getId().equals(pedido.getId())){
-                                pedido1.setComidaStauts("preparando");
-                                listPedidosAtualizados.add(pedido1);
-                            }
-                            else {
-                                listPedidosAtualizados.add(pedido1);
-                                Log.i("pedido1",pedido1.getId());
-                                Log.i("pedido1",pedido.getId());
-                            }
-                        }
-                        mesa.setPedidos(listPedidosAtualizados);
-                        mesaref.setValue(mesa);
-                        listPedidosAtualizados.clear();
-                    }
-                });
-            }
-        });
-
-        //seta evento de click para mudar status do pedido (pronto)
-        holder.buttonPronto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //faz a mudança no banco de dados
-                mesaref = databaseReference.child("mesas").child(pedido.getNumeroMesa());
-                mesaref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                       Mesa mesa = task.getResult().getValue(Mesa.class);
-                        List<Pedido> listPedidos = mesa.getPedidos();
-                        List<Pedido> listPedidosAtualizados = new ArrayList<>();
-                        for (Pedido pedido1 : listPedidos){
-                            if (pedido1.getId().equals(pedido.getId())){
-                                pedido1.setComidaStauts("pronto");
-                                listPedidosAtualizados.add(pedido1);
-                            }
-                            else {
-                                listPedidosAtualizados.add(pedido1);
-                                Log.i("pedido1",pedido1.getId());
-                                Log.i("pedido1",pedido.getId());
-
-                            }
-                        }
-                        mesa.setPedidos(listPedidosAtualizados);
-                        mesaref.setValue(mesa);
-                        listPedidosAtualizados.clear();
-                    }
-                });
-            }
-        });
 
 
     }
@@ -161,8 +102,7 @@ public class ListaPratoPedidosAdapter  extends RecyclerView.Adapter<ListaPratoPe
             textinfoPrato = itemView.findViewById(R.id.textInfoPrato);
             textPedido = itemView.findViewById(R.id.textPedidoMesaCozinha);
             textStatus= itemView.findViewById(R.id.textStatusPratoCozinha);
-            buttonPreparando = itemView.findViewById(R.id.buttonStatusPreparando);
-            buttonPronto = itemView.findViewById(R.id.buttonStatusPronto);
+
         }
     }
 }
