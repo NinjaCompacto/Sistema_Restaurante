@@ -31,20 +31,29 @@
 
         <Button
             android:id="@+id/buttonStatusPreparandoComida"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
             android:layout_weight="0"
-            android:text="Preparando" />
+            android:background="@drawable/buttonshapepreparando"
+            android:padding="10dp"
+            android:text="Preparando"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonStatusProntoComida"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="Pronto" />
+            android:background="@drawable/buttonshapepronto"
+            android:padding="10dp"
+            android:text="Pronto"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 </LinearLayout>

@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/drawable/buttonshape.xml" value="0.382051282051282" />
+        <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/drawable/buttonshapelogin.xml" value="0.382051282051282" />
+        <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/drawable/buttonshapepreparando.xml" value="0.382051282051282" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/drawable/buttonshapepronto.xml" value="0.382051282051282" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/activity_adicionar_obs_bebida.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/activity_adiconar_obs_prato.xml" value="0.33" />
@@ -30,10 +32,12 @@
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/activity_mudar_status.xml" value="0.3578125" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/activity_mudar_status_bebida.xml" value="0.371875" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/activity_obs_prato_adapter.xml" value="0.371875" />
+        <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/activity_pedido_prato.xml" value="0.33" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/activity_prato_pedidos_adapter.xml" value="0.33" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/adapter_lista_pratos_pedidos_cozinha.xml" value="0.371875" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/adapter_mesas.xml" value="0.33" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/adapter_obs_prato.xml" value="0.371875" />
+        <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/adapter_pedido_prato.xml" value="0.371875" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/adapter_prato_pedidos.xml" value="0.33" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/adapter_status_disponivel.xml" value="0.5" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/adapter_status_indisponivel.xml" value="0.371875" />
@@ -45,6 +49,7 @@
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/content_fazer_pedidos_prato.xml" value="0.371875" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/content_garcom.xml" value="0.371875" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/content_mudar_status.xml" value="0.371875" />
+        <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/content_pedido_prato.xml" value="0.371875" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/divisor.xml" value="0.5" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/layout/fragment_first.xml" value="0.38385416666666666" />
         <entry key="..\:/Users/jvnso/AndroidStudioProjects/SistemaRestaurante/app/src/main/res/menu/menu.xml" value="0.371875" />

@@ -63,7 +63,7 @@ public class PedidoPratoActivity extends AppCompatActivity {
                 textStatus.setTextColor(Color.RED);
                 break;
             case "preparando":
-                textStatus.setTextColor(Color.YELLOW);
+                textStatus.setTextColor(Color.rgb(255,193,7));
                 break;
             case "pronto":
                 textStatus.setTextColor(Color.GREEN);
@@ -94,7 +94,7 @@ public class PedidoPratoActivity extends AppCompatActivity {
                             if (pedido1.getId().equals(pedido.getId())){
                                 pedido1.setComidaStauts("preparando");
                                 textStatus.setText("Status: Preparando");
-                                textStatus.setTextColor(Color.YELLOW);
+                                textStatus.setTextColor(Color.rgb(255,193,7));
                                 listaAtualizada.add(pedido1);
                             }
                             else {

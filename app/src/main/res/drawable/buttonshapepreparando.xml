@@ -3,8 +3,7 @@
     <corners
         android:radius="10dp"
         />
-    <solid
-        android:color="@color/colorButtonPronto"
-        />
-
+   <solid
+       android:color="@color/colorButtonPreparando"
+       />
 </shape>

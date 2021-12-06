@@ -54,12 +54,13 @@ public class ListaPratoPedidosAdapter  extends RecyclerView.Adapter<ListaPratoPe
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         textinfo = null;
         Pedido pedido = pedidos.get(position);
-        holder.textPedido.setText("Pedido: Mesa" + pedido.getNumeroMesa());
 
+        holder.textPedido.setText("Pedido: Mesa" + pedido.getNumeroMesa());
+        holder.textTime.setText(pedido.getTime());
 
         //configurando status incial
         if (pedido.getComidaStauts().contains("preparando")){
-            holder.textStatus.setTextColor(Color.YELLOW);
+            holder.textStatus.setTextColor(Color.rgb(255,193,7));
             holder.textStatus.setText("Status: Preparando");
         }
         if (pedido.getComidaStauts().contains("em aberto")){
@@ -67,7 +68,7 @@ public class ListaPratoPedidosAdapter  extends RecyclerView.Adapter<ListaPratoPe
             holder.textStatus.setText("Status: Em Aberto");
         }
         if (pedido.getComidaStauts().contains("pronto")){
-            holder.textStatus.setTextColor(Color.RED);
+            holder.textStatus.setTextColor(Color.GREEN);
             holder.textStatus.setText("Status: Pronto");
         }
 
@@ -94,13 +95,14 @@ public class ListaPratoPedidosAdapter  extends RecyclerView.Adapter<ListaPratoPe
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView textPedido, textStatus,textinfoPrato;
+        TextView textPedido, textStatus,textinfoPrato,textTime;
         Button buttonPreparando, buttonPronto;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textinfoPrato = itemView.findViewById(R.id.textInfoPrato);
             textPedido = itemView.findViewById(R.id.textPedidoMesaCozinha);
+            textTime = itemView.findViewById(R.id.textTimePratoPedido);
             textStatus= itemView.findViewById(R.id.textStatusPratoCozinha);
 
         }

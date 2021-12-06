@@ -1,5 +1,6 @@
 package com.example.sistemarestaurante.Activitys;
 
+import android.icu.text.DateFormat;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,9 +21,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class AdicionarObsBebidaActivity extends AppCompatActivity {
@@ -70,6 +74,7 @@ public class AdicionarObsBebidaActivity extends AppCompatActivity {
         fabObsBebidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    String time = getPedidoTime();
                     String idPedido = criarId();
                     bebidaPedidascomObs = obsBebidaAdapter.getBebidaPedidascomObs();
 
@@ -77,6 +82,7 @@ public class AdicionarObsBebidaActivity extends AppCompatActivity {
                         pedido.setBebida(bebidaPedidascomObs);
                         pedido.setNumeroMesa(mesa.getNumeroMesa());
                         pedido.setId(idPedido);
+                        pedido.setTime(time);
                         if (pedido.getComida().isEmpty()){
                             pedido.setComidaStauts("não tem");
                         }
@@ -95,11 +101,11 @@ public class AdicionarObsBebidaActivity extends AppCompatActivity {
                     }
                     else {
 
-
                         pedidos = mesa.getPedidos();
                         pedido.setBebida(bebidaPedidascomObs);
                         pedido.setNumeroMesa(mesa.getNumeroMesa());
                         pedido.setId(idPedido);
+                        pedido.setTime(time);
 
                         if (pedido.getComida().isEmpty()){
                             pedido.setComidaStauts("não tem");
@@ -129,6 +135,13 @@ public class AdicionarObsBebidaActivity extends AppCompatActivity {
         UUID uniqueKey = UUID.randomUUID();
         String id = uniqueKey.toString();
         return id;
+    }
+
+    public String getPedidoTime () {
+        Date time = Calendar.getInstance().getTime();
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        String timePedido = format.format(time).toString();
+        return timePedido;
     }
 
 
