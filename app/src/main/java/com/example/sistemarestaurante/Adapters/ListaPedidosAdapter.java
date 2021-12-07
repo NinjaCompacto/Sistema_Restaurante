@@ -2,9 +2,7 @@ package com.example.sistemarestaurante.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,33 +12,29 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sistemarestaurante.Activitys.PedidoPratoActivity;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
-import com.example.sistemarestaurante.Model.Mesa;
+import com.example.sistemarestaurante.Model.BebidaPedida;
 import com.example.sistemarestaurante.Model.Pedido;
 import com.example.sistemarestaurante.Model.PratoPedido;
 import com.example.sistemarestaurante.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ListaPratoPedidosAdapter  extends RecyclerView.Adapter<ListaPratoPedidosAdapter.MyViewHolder> {
+public class ListaPedidosAdapter extends RecyclerView.Adapter<ListaPedidosAdapter.MyViewHolder> {
 
     private List<Pedido> pedidos;
     private Context context;
     private String textinfo;
+    private String função;
 
     private DatabaseReference databaseReference = ConfiguracaoFirebase.getDatabaseReference();
     private DatabaseReference mesaref ;
 
-    public ListaPratoPedidosAdapter(List<Pedido> pedidos,Context c) {
+    public ListaPedidosAdapter(List<Pedido> pedidos, Context c,String função) {
         this.context = c;
         this.pedidos = pedidos;
-
+        this.função = função;
     }
 
     @NonNull
@@ -59,29 +53,56 @@ public class ListaPratoPedidosAdapter  extends RecyclerView.Adapter<ListaPratoPe
         holder.textTime.setText(pedido.getTime());
 
         //configurando status incial
-        if (pedido.getComidaStauts().contains("preparando")){
-            holder.textStatus.setTextColor(Color.rgb(255,193,7));
-            holder.textStatus.setText("Status: Preparando");
+        if (função.equals("cozinha")) {
+            if (pedido.getComidaStauts().contains("preparando")) {
+                holder.textStatus.setTextColor(Color.rgb(255, 193, 7));
+                holder.textStatus.setText("Status: Preparando");
+            }
+            if (pedido.getComidaStauts().contains("em aberto")) {
+                holder.textStatus.setTextColor(Color.RED);
+                holder.textStatus.setText("Status: Em Aberto");
+            }
+            if (pedido.getComidaStauts().contains("pronto")) {
+                holder.textStatus.setTextColor(Color.GREEN);
+                holder.textStatus.setText("Status: Pronto");
+            }
         }
-        if (pedido.getComidaStauts().contains("em aberto")){
-            holder.textStatus.setTextColor(Color.RED);
-            holder.textStatus.setText("Status: Em Aberto");
-        }
-        if (pedido.getComidaStauts().contains("pronto")){
-            holder.textStatus.setTextColor(Color.GREEN);
-            holder.textStatus.setText("Status: Pronto");
+        if (função.equals("bar")){
+            if (pedido.getBebidaStauts().contains("preparando")) {
+                holder.textStatus.setTextColor(Color.rgb(255, 193, 7));
+                holder.textStatus.setText("Status: Preparando");
+            }
+            if (pedido.getBebidaStauts().contains("em aberto")) {
+                holder.textStatus.setTextColor(Color.RED);
+                holder.textStatus.setText("Status: Em Aberto");
+            }
+            if (pedido.getBebidaStauts().contains("pronto")) {
+                holder.textStatus.setTextColor(Color.GREEN);
+                holder.textStatus.setText("Status: Pronto");
+            }
         }
 
         //configurando texto de informações do pedido
-        for (PratoPedido pratoPedido : pedido.getComida()){
-            if (textinfo == null) {
-                textinfo = pratoPedido.getPrato().getNomePrato();
+        if (função.equals("cozinha")) {
+            for (PratoPedido pratoPedido : pedido.getComida()) {
+                if (textinfo == null) {
+                    textinfo = pratoPedido.getPrato().getNomePrato();
+                } else {
+                    textinfo = textinfo + ", " + pratoPedido.getPrato().getNomePrato();
+                }
             }
-            else {
-                textinfo = textinfo + ", " + pratoPedido.getPrato().getNomePrato();
-            }
+            holder.textinfoPrato.setText(textinfo);
         }
-        holder.textinfoPrato.setText(textinfo);
+        if(função.equals("bar")){
+            for (BebidaPedida bebidaPedida : pedido.getBebida()) {
+                if (textinfo == null) {
+                    textinfo = bebidaPedida.getBebida().getNomeBebida();
+                } else {
+                    textinfo = textinfo + ", " + bebidaPedida.getBebida().getNomeBebida();
+                }
+            }
+            holder.textinfoPrato.setText(textinfo);
+        }
 
 
 

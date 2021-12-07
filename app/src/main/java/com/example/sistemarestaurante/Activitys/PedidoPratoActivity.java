@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.sistemarestaurante.Adapters.PedidoPratoAdapter;
+import com.example.sistemarestaurante.Adapters.ListaPratosPedidosAdapter;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
 import com.example.sistemarestaurante.Model.Mesa;
 import com.example.sistemarestaurante.Model.Pedido;
@@ -32,7 +32,7 @@ public class PedidoPratoActivity extends AppCompatActivity {
     private List<PratoPedido> pratoPedidos;
     //xml
     private RecyclerView recyclerPedidoPrato;
-    private PedidoPratoAdapter pedidoPratoAdapter;
+    private ListaPratosPedidosAdapter listaPratosPedidosAdapter;
     private TextView textStatus;
     private Button buttonPreparando,buttonPronto;
     //Firebase
@@ -72,12 +72,12 @@ public class PedidoPratoActivity extends AppCompatActivity {
 
 
         //configura adpter
-        pedidoPratoAdapter = new PedidoPratoAdapter(pratoPedidos,getApplicationContext());
+        listaPratosPedidosAdapter = new ListaPratosPedidosAdapter(pratoPedidos,getApplicationContext());
         //configura recycler
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerPedidoPrato.setHasFixedSize(true);
         recyclerPedidoPrato.setLayoutManager(layoutManager);
-        recyclerPedidoPrato.setAdapter(pedidoPratoAdapter);
+        recyclerPedidoPrato.setAdapter(listaPratosPedidosAdapter);
 
         buttonPreparando.setOnClickListener(new View.OnClickListener() {
             @Override

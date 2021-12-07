@@ -8,31 +8,60 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sistemarestaurante.Activitys.CadastroBebidaActivity;
+import com.example.sistemarestaurante.Adapters.ListaPedidosAdapter;
 import com.example.sistemarestaurante.Cadastro_e_login.LoginActivity;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
 import com.example.sistemarestaurante.Activitys.MudarBebidaStatusActivity;
+import com.example.sistemarestaurante.Model.Mesa;
+import com.example.sistemarestaurante.Model.Pedido;
 import com.example.sistemarestaurante.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BarActivity extends AppCompatActivity {
 
     //XML
     private FloatingActionButton fabBar;
-
+    private RecyclerView recyclerListaBebidasPedidas;
+    private ListaPedidosAdapter listaPedidosAdapter;
     //firebase
     private FirebaseAuth auth = ConfiguracaoFirebase.getAuth();
+    private DatabaseReference databaseReference = ConfiguracaoFirebase.getDatabaseReference();
+    private DatabaseReference mesaref = databaseReference.child("mesas");
+
+    //model
+    private List<Pedido> pedidos = new ArrayList<>();
+    private List<Pedido> pedidosFiltrado = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar);
-
-        //configurações iniciais
+        //configuração inicial
+        recyclerListaBebidasPedidas = findViewById(R.id.recyclerBebidasPedidasBar);
         fabBar = findViewById(R.id.fabBar);
+        recuperarPedidosComBebidas();
 
+        //configurando adapter
+        listaPedidosAdapter = new ListaPedidosAdapter(pedidosFiltrado,getApplicationContext(),"bar");
+        //configura recyler
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerListaBebidasPedidas.setHasFixedSize(true);
+        recyclerListaBebidasPedidas.setLayoutManager(layoutManager);
+        recyclerListaBebidasPedidas.setAdapter(listaPedidosAdapter);
+
+        //set click para adicionar bebidas
         fabBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,8 +69,8 @@ public class BarActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
     }
+
 
     //infla menu
     @Override
@@ -66,4 +95,39 @@ public class BarActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void recuperarPedidosComBebidas() {
+        mesaref = databaseReference.child("mesas");
+        mesaref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                pedidosFiltrado.clear();
+                pedidos.clear();
+                for (DataSnapshot dados : snapshot.getChildren()) {
+                    Mesa mesa = dados.getValue(Mesa.class);
+                    if (mesa.getPedidos() != null) {
+                        pedidos = mesa.getPedidos();
+                        for (Pedido pedido : pedidos) {
+                            if (!pedido.getBebidaStauts().contains("pronto") && pedido.getBebida() != null) {
+                                pedidosFiltrado.add(pedido);
+                                listaPedidosAdapter.notifyDataSetChanged();
+                            }
+                            if (pedido.getBebidaStauts().contains("pronto") && pedidosFiltrado.contains(pedido)) {
+                                pedidosFiltrado.remove(pedido);
+                                listaPedidosAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                    listaPedidosAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }
+

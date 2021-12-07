@@ -3,15 +3,17 @@ package com.example.sistemarestaurante.Funcoes;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.sistemarestaurante.Activitys.CadastroPratoActicity;
 import com.example.sistemarestaurante.Activitys.MudarPratoStatusActivity;
 import com.example.sistemarestaurante.Activitys.PedidoPratoActivity;
-import com.example.sistemarestaurante.Adapters.ListaPratoPedidosAdapter;
+import com.example.sistemarestaurante.Adapters.ListaPedidosAdapter;
 import com.example.sistemarestaurante.Cadastro_e_login.LoginActivity;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
 import com.example.sistemarestaurante.Helper.RecyclerViewClickListener;
 import com.example.sistemarestaurante.Model.Mesa;
 import com.example.sistemarestaurante.Model.Pedido;
 import com.example.sistemarestaurante.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,15 +25,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -43,13 +42,14 @@ public class CozinhaActivity extends AppCompatActivity {
 
     //XML
     private RecyclerView recyclerListaPratoPedidos;
-    private ListaPratoPedidosAdapter listaPratoPedidosAdapter;
+    private FloatingActionButton fab;
+    private ListaPedidosAdapter listaPedidosAdapter;
 
     //Firebase
     private FirebaseAuth auth = ConfiguracaoFirebase.getAuth();
     private DatabaseReference databaseReference = ConfiguracaoFirebase.getDatabaseReference();
     private DatabaseReference mesaref;
-    private DatabaseReference pedidoref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,18 +57,20 @@ public class CozinhaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cozinha);
 
         //configurações iniciais
+        fab = findViewById(R.id.fabAdicionarPrato);
         recyclerListaPratoPedidos = findViewById(R.id.recyclerListaPratosPedidos);
+
 
 
         recuperarListaPedidos();
 
         //configura adapter
-        listaPratoPedidosAdapter = new ListaPratoPedidosAdapter(pedidosFiltrado,getApplicationContext());
+        listaPedidosAdapter = new ListaPedidosAdapter(pedidosFiltrado,getApplicationContext(),"cozinha");
         //configurarecycler
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerListaPratoPedidos.setLayoutManager(layoutManager);
         recyclerListaPratoPedidos.setHasFixedSize(true);
-        recyclerListaPratoPedidos.setAdapter(listaPratoPedidosAdapter);
+        recyclerListaPratoPedidos.setAdapter(listaPedidosAdapter);
 
         recyclerListaPratoPedidos.addOnItemTouchListener(new RecyclerViewClickListener(getApplicationContext(),
                 recyclerListaPratoPedidos,
@@ -93,6 +95,15 @@ public class CozinhaActivity extends AppCompatActivity {
                     }
                 }));
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), CadastroPratoActicity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
 
     }
 
@@ -110,15 +121,15 @@ public class CozinhaActivity extends AppCompatActivity {
                             for (Pedido pedido : pedidos){
                                 if (!pedido.getComidaStauts().contains("pronto") && pedido.getComida() != null){
                                     pedidosFiltrado.add(pedido);
-                                    listaPratoPedidosAdapter.notifyDataSetChanged();
+                                    listaPedidosAdapter.notifyDataSetChanged();
                                 }
                                 if(pedido.getComidaStauts().contains("pronto")  && pedidosFiltrado.contains(pedido)){
                                     pedidosFiltrado.remove(pedido);
-                                    listaPratoPedidosAdapter.notifyDataSetChanged();
+                                    listaPedidosAdapter.notifyDataSetChanged();
                                 }
                             }
                         }
-                        listaPratoPedidosAdapter.notifyDataSetChanged();
+                        listaPedidosAdapter.notifyDataSetChanged();
                     }
 
 

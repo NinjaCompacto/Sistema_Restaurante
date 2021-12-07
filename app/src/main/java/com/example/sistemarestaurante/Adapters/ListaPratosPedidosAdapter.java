@@ -17,12 +17,12 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PedidoPratoAdapter extends RecyclerView.Adapter<PedidoPratoAdapter.MyViewHolder> {
+public class ListaPratosPedidosAdapter extends RecyclerView.Adapter<ListaPratosPedidosAdapter.MyViewHolder> {
 
     private List<PratoPedido> listaPratos;
     private Context context;
 
-    public PedidoPratoAdapter(List<PratoPedido>listaPratos, Context context) {
+    public ListaPratosPedidosAdapter(List<PratoPedido>listaPratos, Context context) {
         this.listaPratos = listaPratos;
         this.context = context;
     }
