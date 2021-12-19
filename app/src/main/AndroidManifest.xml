@@ -17,9 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Activitys.PedidoBebidaActivity"
+            android:exported="true"
+            android:parentActivityName=".Funcoes.BarActivity"/>
+        <activity
             android:name=".Activitys.PedidoPratoActivity"
             android:exported="true"
-            android:parentActivityName=".Funcoes.CozinhaActivity"/>
+            android:parentActivityName=".Funcoes.CozinhaActivity" />
         <activity
             android:name=".Activitys.FazerPedidoBebidaActivity"
             android:exported="true"

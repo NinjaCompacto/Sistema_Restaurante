@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sistemarestaurante.Activitys.CadastroBebidaActivity;
+import com.example.sistemarestaurante.Activitys.PedidoBebidaActivity;
 import com.example.sistemarestaurante.Adapters.ListaPedidosAdapter;
 import com.example.sistemarestaurante.Cadastro_e_login.LoginActivity;
 import com.example.sistemarestaurante.Firebase.ConfiguracaoFirebase;
 import com.example.sistemarestaurante.Activitys.MudarBebidaStatusActivity;
+import com.example.sistemarestaurante.Helper.RecyclerViewClickListener;
 import com.example.sistemarestaurante.Model.Mesa;
 import com.example.sistemarestaurante.Model.Pedido;
 import com.example.sistemarestaurante.R;
@@ -60,6 +63,29 @@ public class BarActivity extends AppCompatActivity {
         recyclerListaBebidasPedidas.setHasFixedSize(true);
         recyclerListaBebidasPedidas.setLayoutManager(layoutManager);
         recyclerListaBebidasPedidas.setAdapter(listaPedidosAdapter);
+
+        //adicionando evento de click
+        recyclerListaBebidasPedidas.addOnItemTouchListener(new RecyclerViewClickListener(getApplicationContext(), recyclerListaBebidasPedidas
+                , new RecyclerViewClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Pedido pedidoSelecionado = pedidosFiltrado.get(position);
+                Intent intent = new Intent(getApplicationContext(), PedidoBebidaActivity.class);
+                intent.putExtra("pedidobebida",pedidoSelecionado);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        }));
 
         //set click para adicionar bebidas
         fabBar.setOnClickListener(new View.OnClickListener() {
